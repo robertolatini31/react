@@ -1,0 +1,26 @@
+{
+  "streams": [
+    {
+      "title": "la mia stream",
+      "description": "just chatting etc",
+      "id": 1
+    },
+    {
+      "title": "seconda stream",
+      "description": "prova admin controlli",
+      "userId": "117873373402795791428",
+      "id": 2
+    },
+    {
+      "title": "ultima stream",
+      "description": "prova edit controlli",
+      "id": 3
+    },
+    {
+      "title": "navigazione programmata",
+      "description": "proviamo la programmazione nella navigazione",
+      "userId": "117873373402795791428",
+      "id": 4
+    }
+  ]
+}
