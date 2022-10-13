@@ -1,0 +1,51 @@
+version: "3.8"
+
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge
+
+services:
+  mysqldb:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_docker
+    ports:
+      - 3307:3307
+    expose:
+      - 3307
+    networks:
+      - backend
+    volumes:
+      - ./init:/docker-entrypoint-initdp.d
+
+server:
+  depends_on:
+    - mysqldb
+  build: ./server
+  restart: always
+  ports:
+    - 3001:3001
+  expose:
+    - 3001
+  networks:
+    - backend
+    - frontend
+  environment:
+    MYSQL_HOST_IP: mysqldb
+
+client:
+  depends_on:
+    - server
+  build:
+    context: ./client
+  ports:
+    - 3000:3000
+  expose:
+    - 3000
+  networks:
+    - frontend
